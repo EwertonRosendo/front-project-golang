@@ -1,38 +1,130 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "theoffice";
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: theoffice;
+  src: url(./TYPIST.TTF);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.menu {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  background-color: #3f362f;
+  padding: 30px;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.menu p {
+  padding: 5px 7px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+.menu a {
+  color: white;
+  text-decoration: none;
+}
+.menu p:hover {
+  background-color: var(--blue);
+  transition: 0.3s ease-in-out;
+  transform: translateY(-2px);
+}
+:root {
+  --blue: #ac8969;
+  --white: #ffffff;
+}
+button {
+  background-color: #4184d2;
+  color: white;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px;
+  margin-left: 10px;
+  border: 0px;
+  cursor: pointer;
+}
+.current-screen {
+  background-color: #ac8969;
+  height: 100%;
+  padding: 5px 7px;
+  border-radius: 5px;
+}
+body.active-modal {
+  overflow-y: hidden;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-modal {
+  padding: 10px 20px;
+  display: block;
+  margin: 100px auto 0;
+  font-size: 18px;
+}
+
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+.modal-content {
+  display: flex;
+  transition: 0.3s ease-in-out;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  height: 300px;
+  width: 600px;
+}
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
+.modal-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-items: flex-end;
+}
+.modal-buttons button {
+  height: 40px;
+  transition: 0.3s ease-in-out;
+}
+.cancel-button {
+  background-color: white;
+  color: #a76657;
+  border: 1px solid #a76657;
+  width: 120px;
+}
+.agree-button {
+  background-color: #a76657;
+  color: white;
+  width: 210px;
+}
+.cancel-button:hover {
+  background-color: #a76657;
+  color: white;
+}
+.agree-button:hover {
+  background-color: white;
+  color: #a76657;
+  border: 1px solid #a76657;
 }
