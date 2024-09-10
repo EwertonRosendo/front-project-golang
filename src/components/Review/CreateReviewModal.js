@@ -15,8 +15,6 @@ export default function Modal(props) {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            "X-CSRF-Token": document.querySelector("meta[name='csrf-token']")
-              .content,
           },
         },
       )

@@ -16,16 +16,14 @@ export default function DeleteModal(props, title) {
   }
   const delete_book = () => {
     axios
-      .delete(`http://localhost:3000/Books/${props.book.id}`, {
+      .delete(`http://localhost:5000/books/${props.book.id}`, {
         headers: {
           "Content-Type": "application/json",
-          "X-CSRF-Token": document.querySelector("meta[name='csrf-token']")
-            .content,
         },
       })
       .then((response) => {
         if (response.status == 200) {
-          window.location.replace("http://localhost:3000/Books");
+          
         }
       });
   };

@@ -6,6 +6,7 @@ import './App.css';
 import Layout from "./pages/Layout";
 import GoogleBooks from "./pages/GoogleBooks/GoogleBooks";
 import OurLibrary from "./pages/OurLibrary/OurLibrary";
+import BookById from "./pages/OurLibrary/EditBookById";
 import Reviews from "./pages/Review/AllReviews";
 import ReviewById from "./pages/Review/ReviewById";
 import Login from "./pages/Login/Login";
@@ -17,11 +18,12 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="GoogleBooks" element={<GoogleBooks />} />
-          <Route path="library" element={<OurLibrary />} />
           <Route path="reviews" element={<Reviews />} />
           <Route path="reviews/:id" element={<ReviewById />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="library" element={<OurLibrary />} />
+          <Route path="library/:bookId" element={<BookById />} />
         </Route>
       </Routes>
     </BrowserRouter>

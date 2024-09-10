@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import DeleteModal from "../../components/OurLibrary/DeleteModal";
 
-import DeleteModal from "./DeleteModal";
-import UpdateModal from "./UpdateModal";
+import UpdateModal from "../../components/OurLibrary/UpdateModal";
 
 import { MdOutlineFileUpload } from "react-icons/md";
 
@@ -11,7 +12,9 @@ import axios from "axios";
 import "./bookById.css"
 
 const BookById = (props) => {
-  const baseURL = `http://localhost:3000/Books/${props.id}.json`;
+  const { bookId } = useParams(); // Extract the book ID from the URL
+
+  const baseURL = `http://localhost:5000/books/${bookId}`;
   const [book, setBook] = useState([]);
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
@@ -23,19 +26,30 @@ const BookById = (props) => {
   const [image_file, setImageFile] = useState();
   const [cover, setCover] = useState("");
 
+  const [formFile, setFormFile] = useState({
+    title: "",
+    "form-id": null,
+  });
+
+  const handleFileChange = (event) => {
+    setFormFile({
+      "form-id": event.target.files[0],
+    });
+  };
+
   useEffect(() => {
     axios
       .get(baseURL)
       .then((response) => {
-        setId(response.data.book.id);
-        setBook(response.data.book);
+        setId(response.data.id);
+        setBook(response.data);
         setTitle(response.data.title);
         setDescription(response.data.description);
         setPublisher(response.data.publisher);
         setPublished_at(response.data.published_at);
         setUrlImage(response.data.url_image);
-        setAuthor(response.data.book.author.name);
-        setCover(response.data.cover.cover_url);
+        setAuthor(response.data.authors);
+        setCover(response.data.thumbnail);
       })
 
       .catch((e) => console.log(e));
@@ -47,7 +61,7 @@ const BookById = (props) => {
         <div className="box">
           <div className="book-img">
             <img
-              src={cover ? cover : book.url_image}
+              src={"http://localhost:3000/"+cover}
               alt={`${book.title} image`}
               className="bookImage"
             />
@@ -116,17 +130,15 @@ const BookById = (props) => {
               ></textarea>
             </div>
             <div className="input-file">
-              <label for="file">
+              <label htmlFor="form-id">
                 <MdOutlineFileUpload fontSize={"40px"} color="#A76657" />
               </label>
-              <label for="file">Drop a file or click to upload</label>
+              <label htmlFor="form-id">Drop a file or click to upload</label>
               <input
-                onChange={(e) => {
-                  setImageFile(e.target.files[0]);
-                }}
+                onChange={handleFileChange}
                 type="file"
-                name="file"
-                id="file"
+                name="form-id"
+                id="form-id"
                 accept="image/png, image/jpeg"
               />
             </div>
@@ -140,6 +152,7 @@ const BookById = (props) => {
               author={author}
               url_image={url_image ? url_image : book.url_image}
               image_file={image_file}
+              formFile={formFile}
             />
           </div>
         </div>

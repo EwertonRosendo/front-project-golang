@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import Modal from "../../components/OurLibrary/CreateBookModal";
 import CreateReview from "../../components/Review/CreateReviewModal"
 import ShowBookModal from "../../components/OurLibrary/ShowBookModal";
@@ -47,7 +48,7 @@ const OurLibrary = (props) => {
         <div className="book-box">
           <div className="book-title-img">
             <img
-              src={book.thumbnail}
+              src={"http://localhost:3000/"+book.thumbnail}
               alt={`${book.title} image`}
               className="bookImage"
             />
@@ -67,7 +68,7 @@ const OurLibrary = (props) => {
             </p>
             <ShowBookModal
               book={book}
-              cover={book.cover_url ? book.cover_url : book.url_image}
+              cover={book.thumbnail}
             />
             <CreateReview
               book={book}

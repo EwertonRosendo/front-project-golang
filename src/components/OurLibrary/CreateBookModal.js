@@ -10,6 +10,11 @@ import { MdOutlineFileUpload } from "react-icons/md";
 
 export default function Modal() {
   const [modal, setModal] = useState(false);
+  const [formFile, setFormFile] = useState({
+    title: "",
+    cover: null,
+  });
+
   const [formData, setFormData] = useState({
     title: "",
     author: "",
@@ -37,25 +42,26 @@ export default function Modal() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData();
-    for (const key in formData) {
-      data.append(`book[${key}]`, formData[key]);
-    }
 
-    handleAddBook(data);
+    handleAddBook();
   };
 
-  const handleAddBook = (data) => {
+  const handleAddBook = () => {
     axios
-      .post("http://localhost:5000/books/add", data, {
+      .post("http://localhost:5000/books/add", formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       })
       .then((response) => {
         if (response.status === 201) {
           toggleModal();
-          window.location.reload();
+          axios
+          .post("http://localhost:5000/files", formFile, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
         }
       })
       .catch((e) => console.log(e));

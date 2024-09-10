@@ -6,31 +6,34 @@ export default function Update(props, title) {
   const update_book = () => {
     axios
       .put(
-        `http://localhost:3000/Books/${props.id}`,
+        `http://localhost:5000/books/${props.id}`,
         {
-          book: {
-            title: props.title,
-            publisher: props.publisher,
-            published_at: props.published_at,
-            description: props.description,
-            author: props.author,
-            url_image: props.url_image,
-            cover: props.image_file,
-          },
+          
+          title: props.title,
+          publisher: props.publisher,
+          published_at: props.published_at,
+          description: props.description,
+          authors: props.author,
+          
+            
+          
         },
         {
           headers: {
-            "Content-Type": "multipart/form-data",
-            "X-CSRF-Token": document.querySelector("meta[name='csrf-token']")
-              .content,
+            "Content-Type": "application/json",
+            
           },
         },
-      )
-      .then((response) => {
-        if (response.status == 200) {
-          window.location.replace("http://localhost:3000/Books");
+      ).then((response)=>{
+        if (response.status === 204){
+          axios
+          .post(`http://localhost:5000/files/${props.id}`, props.formFile, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
         }
-      });
+      })
   };
   const toggleModal = () => {
     setModal(!modal);

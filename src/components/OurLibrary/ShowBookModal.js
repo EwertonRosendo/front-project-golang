@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 export default function Modal(props) {
   const [modal, setModal] = useState(false);
 
@@ -28,7 +28,7 @@ export default function Modal(props) {
               <div className="box">
                 <div className="book-img">
                   <img
-                    src={props.cover ? props.cover : props.book.url_image}
+                    src={"http://localhost:3000/"+props.book.thumbnail}
                     alt={`${props.book.title} image`}
                     className="bookImage"
                   />
@@ -38,7 +38,7 @@ export default function Modal(props) {
                     <p>{props.book.title}</p>
                   </div>
                   <div>
-                    <p>Author: {props.book.author.name}</p>
+                    <p>Author: {props.book.authors}</p>
                   </div>
                   <div>
                     <p>Published by {props.book.publisher}</p>
@@ -62,14 +62,9 @@ export default function Modal(props) {
                 Close
               </button>
               <button
-                onClick={() =>
-                  window.location.replace(
-                    `http://localhost:3000/Books/${props.book.id}/edit`,
-                  )
-                }
                 className="agree-button"
               >
-                Edit this book
+                <NavLink to={`/library/${props.book.id}`}>Edit this book</NavLink>
               </button>
             </div>
           </div>
