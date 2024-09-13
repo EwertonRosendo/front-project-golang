@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { CookiesProvider, useCookies } from 'react-cookie'
 
 export default function Update(props, title) {
   const [modal, setModal] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
   const update_book = () => {
     axios
       .put(
@@ -14,14 +16,13 @@ export default function Update(props, title) {
           published_at: props.published_at,
           description: props.description,
           authors: props.author,
-          
+          id: cookies.id
             
           
         },
         {
           headers: {
             "Content-Type": "application/json",
-            
           },
         },
       ).then((response)=>{
@@ -54,7 +55,7 @@ export default function Update(props, title) {
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content">
+          <div className="modal-content-book" style={{height: "300px"}}>
             <h2>Update {props.title}</h2>
             <div>
               <p>

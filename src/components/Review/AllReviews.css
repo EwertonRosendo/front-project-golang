@@ -145,7 +145,7 @@ body.active-modal {
   margin-top: 0px;
 }
 .btn-modal:hover {
-  background-color: rgb(236, 56, 56);
+  background-color: var(--blue);
   color: white;
 }
 .modal,
@@ -162,7 +162,7 @@ body.active-modal {
 .overlay {
   background: rgba(49, 49, 49, 0.8);
 }
-.modal-content {
+.modal-content-review {
   display: flex;
   transition: 0.3s ease-in-out;
   align-items: flex-start;

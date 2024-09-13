@@ -5,6 +5,7 @@
     margin-top: 50px;
     flex-direction: column;
     align-items: center;
+    flex-direction: row;
   }
   .box {
     display: flex;
@@ -38,11 +39,10 @@
   .book-info {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
     font-size: 18px;
     height: 100%;
-    width: 50vh;
   }
   .book-info .title {
     font-weight: 700;

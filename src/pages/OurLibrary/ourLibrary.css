@@ -14,6 +14,7 @@
     justify-content: flex-start;
     align-items: center;
     margin-left: 200px;
+    flex-direction: row;
     margin-right: 200px;
   }
   .books {
@@ -52,7 +53,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
-    margin: 10px 10px;
+    margin: 5px 5px;
     font-family: Arial, Helvetica, sans-serif;
   }
   .book-info a {
@@ -170,6 +171,10 @@
     transition: 0.3s ease-in-out;
     color: #a76657;
     font-weight: 900;
+  }
+  .cancel-button:hover{
+    background-color: #a76657;
+    color: white;
   }
   .add-button {
     background-color: #a76657;
@@ -301,11 +306,30 @@
   }
   
   /*book by id modal*/
+  .modal-content-book {
+    display: flex;
+    transition: 0.3s ease-in-out;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-direction: column;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    height: 550px;
+    width: 700px;
+    z-index: 2;
+  }
   
   .modal-content .box {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: row;
   }
   
   .modal-content .box .bookImage {
@@ -324,10 +348,6 @@
     justify-content: center;
     align-items: center;
   }
-  .book-info button{
-    width: 100%;
-  }
-  
   @media screen and (max-width: 730px) {
     .search {
       margin-left: 10px;
@@ -391,3 +411,7 @@
       flex-direction: row;
     }
   }
+.box-book {
+  display: flex !important;
+  flex-direction: row !important;
+}

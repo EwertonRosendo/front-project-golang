@@ -61,7 +61,7 @@ const BookById = (props) => {
         <div className="box">
           <div className="book-img">
             <img
-              src={"http://localhost:3000/"+cover}
+              src={"http://localhost:5000/static/"+cover}
               alt={`${book.title} image`}
               className="bookImage"
             />

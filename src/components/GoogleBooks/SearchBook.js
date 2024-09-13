@@ -23,7 +23,7 @@ const GoogleBooks = (props) => {
 
   return (
     <React.Fragment>
-      <div className="search">
+      <div className="google-search">
         <input
           type="search"
           placeholder={"Search book by title"}

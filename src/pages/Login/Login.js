@@ -8,7 +8,7 @@ const Login = (props) => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate(); // Adicione o hook useNavigate
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
-
+  
 
   function handleInputChange(event) {
     const { id, value } = event.target;

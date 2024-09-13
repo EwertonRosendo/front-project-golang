@@ -4,11 +4,12 @@ import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import Modal from "../../components/OurLibrary/CreateBookModal";
 import CreateReview from "../../components/Review/CreateReviewModal"
 import ShowBookModal from "../../components/OurLibrary/ShowBookModal";
-
+import { useCookies } from "react-cookie";
 import "./ourLibrary.css"
 
 const OurLibrary = (props) => {
   const baseURL = "http://localhost:5000/books";
+  const [cookies, setCookie, removeCookie] = useCookies(['token']); // Certifique-se de incluir 'token'
   const [myBooks, setMyBooks] = useState([]);
   const [cover, setCover] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,7 +49,7 @@ const OurLibrary = (props) => {
         <div className="book-box">
           <div className="book-title-img">
             <img
-              src={"http://localhost:3000/"+book.thumbnail}
+              src={"http://localhost:5000/static/"+book.thumbnail}
               alt={`${book.title} image`}
               className="bookImage"
             />
@@ -70,10 +71,13 @@ const OurLibrary = (props) => {
               book={book}
               cover={book.thumbnail}
             />
+            { cookies.id && cookies["token"] ? 
             <CreateReview
-              book={book}
-              cover={book.cover_url ? book.cover_url : book.url_image}
-            />
+            book={book}
+            cover={book.cover_url ? book.cover_url : book.url_image}
+          />
+            : <></> }
+            
             <p>
               {book.published_at
                 ? "Published at " + book.published_at

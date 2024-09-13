@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ConfirmationModal from "./ConfirmationModal";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const ListBooks = (props) => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate(); 
+  const [cookies, setCookie, removeCookie] = useCookies(['token']); // Certifique-se de incluir 'token'
 
-  const handleAddGoogleBook = (book) => {
-    setSelectedBook(book);
-    setShowModal(true);
-    setTimeout(() => {
-      setShowModal(false);
-    }, 2000);
-  };  
-
-  const confirmAddBook = () => {
+  const confirmAddBook = (selectedBook) => {
     axios
       .post(
         "http://localhost:5000/googlebooks/add",
@@ -26,8 +22,7 @@ const ListBooks = (props) => {
           description: selectedBook.description ? selectedBook.description : "no description",
           authors: selectedBook.authors ? selectedBook.authors : "no author",
           thumbnail: selectedBook.thumbnail ? selectedBook.thumbnail : "no thumbnail",
-      },
-      
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -35,27 +30,31 @@ const ListBooks = (props) => {
         }
       )
       .then((response) =>{
-        if (response.status === 201){
-          setShowModal(false)
+        if (response.status === 201) {
+          setShowModal(true);
         } else {
-          console.log("book already added or something went wrong")
+          console.log("book already added or something went wrong");
         }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.log(e));      
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   const allBooks = props.books.map((book, index) => (
     <div key={index} >
-      <div className="book-box">
-        <div className="book-title-img">
+      <div className="google-book-box">
+        <div className="google-book-title-img">
           <img
             src={book["thumbnail"]}
             alt={`${book.title} image`}
-            className="bookImage"
+            className="google-bookImage"
           />
         </div>
-        <div className="book-info">
-          <p className="title">
+        <div className="google-book-info">
+          <p className="google-title">
             {book.title.split(" ").length > 6
               ? book.title.split(" ").slice(0, 6).join(" ") + ".."
               : book.title}
@@ -77,7 +76,8 @@ const ListBooks = (props) => {
             <></>
           )}
           {book["publisher"] ? <p>Publisher: {book["publisher"]}</p> : <></>}
-          <button onClick={() => handleAddGoogleBook(book)}>Add Book</button>
+          { cookies.id && cookies["token"] ? <button onClick={() => confirmAddBook(book)}>Add Book</button> : <></> }
+          
         </div>
       </div>
     </div>
@@ -85,17 +85,9 @@ const ListBooks = (props) => {
 
   return (
     <React.Fragment>
-      <div className="main">
-        <div className="body">{props.books ? allBooks : <></>}</div>
+      <div className="google-main">
+        <div className="google-body">{props.books ? allBooks : <></>}</div>
       </div>
-      {showModal && (
-        <ConfirmationModal
-          showModal={showModal}
-          setShowModal={setShowModal}
-          onConfirm={confirmAddBook()}
-          message="Book added successfully :)"
-        />
-      )}
     </React.Fragment>
   );
 };
