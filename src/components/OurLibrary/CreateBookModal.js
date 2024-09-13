@@ -45,7 +45,7 @@ export default function Modal() {
   };
 
   const handleAddBook = () => {
-    console.log(modal)
+    console.log(modal);
     axios
       .post("http://localhost:5000/books/add", formData, {
         headers: {
@@ -55,16 +55,19 @@ export default function Modal() {
       .then((response) => {
         if (response.status === 201) {
           toggleModal();
-          axios
-          .post(`http://localhost:5000/files/${response.data.id}`, formFile, {
-            headers: {
-              "Content-Type": "multipart/form-data",
+          axios.post(
+            `http://localhost:5000/files/${response.data.id}`,
+            formFile,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
             },
-          })
+          );
         }
       })
       .catch((e) => console.log(e));
-      console.log(modal)
+    console.log(modal);
   };
 
   const toggleModal = () => {

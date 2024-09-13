@@ -8,7 +8,7 @@ import "./styles.css";
 
 const GoogleBooks = (props) => {
   const [books, setBooks] = useState([]);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']); // Certifique-se de incluir 'token'
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]); // Certifique-se de incluir 'token'
 
   useEffect(() => {
     const url = "http://localhost:5000/googlebooks";
@@ -22,9 +22,8 @@ const GoogleBooks = (props) => {
       })
       .then((res) => setBooks(res))
       .catch((error) => console.error("Error fetching books:", error));
-
   }, [cookies]);
-  console.log(cookies.id)
+  console.log(cookies.id);
 
   return (
     <React.Fragment>

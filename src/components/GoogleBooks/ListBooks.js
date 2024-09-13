@@ -7,8 +7,8 @@ import { useCookies } from "react-cookie";
 const ListBooks = (props) => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate(); 
-  const [cookies, setCookie, removeCookie] = useCookies(['token']); // Certifique-se de incluir 'token'
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]); // Certifique-se de incluir 'token'
 
   const confirmAddBook = (selectedBook) => {
     axios
@@ -16,27 +16,37 @@ const ListBooks = (props) => {
         "http://localhost:5000/googlebooks/add",
         {
           title: selectedBook.title ? selectedBook.title : "no title",
-          publisher: selectedBook.publisher ? selectedBook.publisher : "no publisher",
-          published_at: selectedBook.published_at ? selectedBook.published_at : "no date",
-          subtitle: selectedBook.subtitle ? selectedBook.subtitle : "no subtitle",
-          description: selectedBook.description ? selectedBook.description : "no description",
+          publisher: selectedBook.publisher
+            ? selectedBook.publisher
+            : "no publisher",
+          published_at: selectedBook.published_at
+            ? selectedBook.published_at
+            : "no date",
+          subtitle: selectedBook.subtitle
+            ? selectedBook.subtitle
+            : "no subtitle",
+          description: selectedBook.description
+            ? selectedBook.description
+            : "no description",
           authors: selectedBook.authors ? selectedBook.authors : "no author",
-          thumbnail: selectedBook.thumbnail ? selectedBook.thumbnail : "no thumbnail",
+          thumbnail: selectedBook.thumbnail
+            ? selectedBook.thumbnail
+            : "no thumbnail",
         },
         {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       )
-      .then((response) =>{
+      .then((response) => {
         if (response.status === 201) {
           setShowModal(true);
         } else {
           console.log("book already added or something went wrong");
         }
       })
-      .catch((e) => console.log(e));      
+      .catch((e) => console.log(e));
   };
 
   const closeModal = () => {
@@ -44,7 +54,7 @@ const ListBooks = (props) => {
   };
 
   const allBooks = props.books.map((book, index) => (
-    <div key={index} >
+    <div key={index}>
       <div className="google-book-box">
         <div className="google-book-title-img">
           <img
@@ -66,18 +76,18 @@ const ListBooks = (props) => {
           ) : (
             <></>
           )}
-          <p>
-            Author:{" "}
-            {book.authors}
-          </p>
+          <p>Author: {book.authors}</p>
           {book["published_at"] ? (
             <p>Published at {book["published_at"]}</p>
           ) : (
             <></>
           )}
           {book["publisher"] ? <p>Publisher: {book["publisher"]}</p> : <></>}
-          { cookies.id && cookies["token"] ? <button onClick={() => confirmAddBook(book)}>Add Book</button> : <></> }
-          
+          {cookies.id && cookies["token"] ? (
+            <button onClick={() => confirmAddBook(book)}>Add Book</button>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>

@@ -7,7 +7,7 @@ const GoogleBooks = (props) => {
     axios
       .get(`http://localhost:5000/googlebooks/${title}`)
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         props.booksList(response.data);
       })
       .catch((e) => {

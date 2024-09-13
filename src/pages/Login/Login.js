@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import axios from "axios";
-import { CookiesProvider, useCookies } from 'react-cookie'
+import { CookiesProvider, useCookies } from "react-cookie";
 
 const Login = (props) => {
   const [formData, setFormData] = useState({});
   const navigate = useNavigate(); // Adicione o hook useNavigate
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
-  
+  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
   function handleInputChange(event) {
     const { id, value } = event.target;
@@ -27,15 +26,21 @@ const Login = (props) => {
       })
       .then((response) => {
         if (response.status === 202) {
-          setCookie('token', response.data, { path: '/', httpOnly: false })
-          setCookie('id', response.data.id, { path: '/', httpOnly: false })
-          setCookie('nick', response.data.nick, { path: '/', httpOnly: false })
-          setCookie('name', response.data.name, { path: '/', httpOnly: false })
-          setCookie('email', response.data.email, { path: '/', httpOnly: false })
-          setCookie('image', response.data.UserImage, { path: '/', httpOnly: false })
-          navigate("/GoogleBooks")
+          setCookie("token", response.data, { path: "/", httpOnly: false });
+          setCookie("id", response.data.id, { path: "/", httpOnly: false });
+          setCookie("nick", response.data.nick, { path: "/", httpOnly: false });
+          setCookie("name", response.data.name, { path: "/", httpOnly: false });
+          setCookie("email", response.data.email, {
+            path: "/",
+            httpOnly: false,
+          });
+          setCookie("image", response.data.UserImage, {
+            path: "/",
+            httpOnly: false,
+          });
+          navigate("/GoogleBooks");
         } else {
-          console.log("wrong credentials")
+          console.log("wrong credentials");
         }
       })
       .catch((error) => console.error(error));

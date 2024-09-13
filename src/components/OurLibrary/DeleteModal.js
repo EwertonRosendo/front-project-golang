@@ -23,7 +23,6 @@ export default function DeleteModal(props, title) {
       })
       .then((response) => {
         if (response.status == 200) {
-          
         }
       });
   };

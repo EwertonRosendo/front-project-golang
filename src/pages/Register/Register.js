@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles.css"
+import "./styles.css";
 import axios from "axios";
 
 const Register = (props) => {
   const [formData, setFormData] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   function handleInputChange(event) {
     const { id, value } = event.target;
 
@@ -17,18 +17,14 @@ const Register = (props) => {
 
   const handleSignUpClick = () => {
     axios
-      .post(
-        "http://localhost:5000/users",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
+      .post("http://localhost:5000/users", formData, {
+        headers: {
+          "Content-Type": "application/json",
         },
-      )
+      })
       .then((response) => {
         if (response.status === 201) {
-          navigate("/login")
+          navigate("/login");
         }
       });
   };

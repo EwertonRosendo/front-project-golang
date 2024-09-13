@@ -188,13 +188,13 @@ body.active-modal {
 }
 @media screen and (max-width: 730px) {
   .reviews {
-    margin: 20px 50px
+    margin: 20px 50px;
   }
-  .your-reviews{
+  .your-reviews {
     justify-content: center;
   }
 
-  .modal-content{
+  .modal-content {
     height: 600px;
     width: 90%;
     margin-top: 50px;

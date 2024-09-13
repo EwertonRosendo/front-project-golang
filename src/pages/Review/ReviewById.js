@@ -20,7 +20,6 @@ const ReviewById = (props) => {
       })
       .then((response) => {
         if (response.status === 200) {
-          
         }
       });
   };
@@ -53,7 +52,6 @@ const ReviewById = (props) => {
       .delete(`http://localhost:3000/reviews/${review_id}/comments/${id}`)
       .then((response) => {
         if (response.status === 200) {
-          
         }
       });
   };
@@ -79,7 +77,13 @@ const ReviewById = (props) => {
             <p>{comment.content}</p>
           </div>
           {comment.user.id == props.user_id ? (
-            <div style={{display:"flex", justifyContent:"flex-end", alignItems:"center"}}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+              }}
+            >
               <a
                 className="delete-comment"
                 onClick={() => handleDeleteComment(id, comment.id)}
@@ -87,7 +91,6 @@ const ReviewById = (props) => {
                 delete your comment
               </a>
             </div>
-            
           ) : (
             <></>
           )}

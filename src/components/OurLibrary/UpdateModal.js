@@ -1,40 +1,41 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { CookiesProvider, useCookies } from 'react-cookie'
+import { CookiesProvider, useCookies } from "react-cookie";
 
 export default function Update(props, title) {
   const [modal, setModal] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name'])
+  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
   const update_book = () => {
     axios
       .put(
         `http://localhost:5000/books/${props.id}`,
         {
-          
           title: props.title,
           publisher: props.publisher,
           published_at: props.published_at,
           description: props.description,
           authors: props.author,
-          id: cookies.id
-            
-          
+          id: cookies.id,
         },
         {
           headers: {
             "Content-Type": "application/json",
           },
         },
-      ).then((response)=>{
-        if (response.status === 204){
-          axios
-          .post(`http://localhost:5000/files/${props.id}`, props.formFile, {
-            headers: {
-              "Content-Type": "multipart/form-data",
+      )
+      .then((response) => {
+        if (response.status === 204) {
+          axios.post(
+            `http://localhost:5000/files/${props.id}`,
+            props.formFile,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
             },
-          })
+          );
         }
-      })
+      });
   };
   const toggleModal = () => {
     setModal(!modal);
@@ -55,7 +56,7 @@ export default function Update(props, title) {
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content-book" style={{height: "300px"}}>
+          <div className="modal-content-book" style={{ height: "300px" }}>
             <h2>Update {props.title}</h2>
             <div>
               <p>

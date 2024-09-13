@@ -1,416 +1,416 @@
 * {
-    margin: 0px;
-    padding: 0px;
-  }
-  .main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .body {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: flex-start;
-    align-items: center;
-    margin-left: 200px;
-    flex-direction: row;
-    margin-right: 200px;
-  }
-  .books {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .book-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    background-color: rgb(245, 245, 245);
-    border-radius: 10px;
-    width: 300px;
-    height: 470px;
-    margin: 10px 10px;
-    border: 1px solid rgb(185, 185, 185);
-  }
-  .book-title-img {
-    display: flex;
-    align-items: flex-start;
-    height: 300px;
-  }
-  .book-title-img img {
-    padding: 5px;
-    border-radius: 30px;
-    height: 200px;
-    width: 160px;
-    object-fit: cover;
-  }
-  .book-info {
-    display: flex;
-    width: 280px;
-    height: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-    margin: 5px 5px;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  .book-info a {
-    text-decoration: none;
-    color: #ffffff;
-    background-color: #6e98c9;
-    padding: 5px;
-    border-radius: 3px;
-    transition: 0.2s ease-in-out;
-    transform: translateY(-2px);
-  }
-  .book-info a:hover {
-    background-color: #4184d2;
-    color: white;
-  }
-  input:focus {
-    outline: none;
-  }
-  button {
-    background-color: #4184d2;
-    color: white;
-    border-radius: 5px;
-    height: 30px;
-    padding: 5px;
+  margin: 0px;
+  padding: 0px;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 200px;
+  flex-direction: row;
+  margin-right: 200px;
+}
+.books {
+  display: flex;
+  flex-wrap: wrap;
+}
+.book-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  width: 300px;
+  height: 470px;
+  margin: 10px 10px;
+  border: 1px solid rgb(185, 185, 185);
+}
+.book-title-img {
+  display: flex;
+  align-items: flex-start;
+  height: 300px;
+}
+.book-title-img img {
+  padding: 5px;
+  border-radius: 30px;
+  height: 200px;
+  width: 160px;
+  object-fit: cover;
+}
+.book-info {
+  display: flex;
+  width: 280px;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin: 5px 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.book-info a {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #6e98c9;
+  padding: 5px;
+  border-radius: 3px;
+  transition: 0.2s ease-in-out;
+  transform: translateY(-2px);
+}
+.book-info a:hover {
+  background-color: #4184d2;
+  color: white;
+}
+input:focus {
+  outline: none;
+}
+button {
+  background-color: #4184d2;
+  color: white;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px;
+  margin-left: 10px;
+  border: 0px;
+  cursor: pointer;
+}
+.book-info p {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.title {
+  font-size: 21px;
+  font-weight: 700;
+}
+.wrong p {
+  font-weight: 700;
+  width: 75vh;
+  padding: 10px;
+  margin: 15px;
+  border-radius: 10px;
+  background-color: rgb(255, 43, 43);
+  color: white;
+}
+.pagination-box {
+  display: flex;
+  justify-content: center;
+}
+.pagination {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.pagination p {
+  margin: 0px 20px;
+}
+.pagination button {
+  padding: 5px;
+}
+
+.modal-content {
+  height: 540px !important;
+}
+.content {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.content p {
+  margin-left: 5px;
+  margin-top: 7px;
+}
+.left-inputs {
+  display: flex;
+  flex-direction: column;
+}
+.descrip textarea {
+  height: 300px;
+  padding: 5px;
+  resize: none;
+  border: 1px solid #a76657;
+  border-radius: 3px;
+}
+.modal-create input {
+  display: flex;
+  background-color: #f1f1f1;
+  border: 1px solid #a76657;
+  flex-direction: column;
+  border-radius: 0px;
+  outline: 0;
+  border-width: 0 0 2px;
+  width: 200px;
+  height: 26px;
+  padding: 5px;
+}
+input:focus {
+  border-color: green;
+  outline: 1px dotted #ffffff00;
+}
+.add-cancel-button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s ease-in-out;
+  margin-top: 10px;
+}
+.cancel-button {
+  background-color: white;
+  border: 1px solid #a76657;
+  transition: 0.3s ease-in-out;
+  color: #a76657;
+  font-weight: 900;
+}
+.cancel-button:hover {
+  background-color: #a76657;
+  color: white;
+}
+.add-button {
+  background-color: #a76657;
+  color: white;
+  transition: 0.3s ease-in-out;
+  font-weight: 900;
+}
+
+.add-button:hover {
+  background-color: white;
+  color: #a76657;
+  border: 1px solid #a76657;
+  border-radius: 5px;
+}
+.input-file {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 10px 3px;
+  justify-content: center;
+  border: 3px dashed #a76657;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.input-file input {
+  display: none;
+}
+select {
+  width: 100%; /* Make it full width, adjust as needed */
+  padding: 10px; /* Add padding for better appearance */
+  font-size: 16px; /* Increase font size */
+  font-weight: 700; /* Make the font bold */
+  border-radius: 5px; /* Round the corners */
+  background-color: #f4f4f4; /* Light background color */
+  border: 2px solid #ddd; /* Light border color */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  appearance: none; /* Remove default arrow (can replace with custom arrow if desired) */
+  cursor: pointer; /* Change cursor to pointer */
+  margin-bottom: 50px;
+  transition:
+    border-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+}
+
+/* Style the options */
+select option {
+  background-color: #ffffff; /* White background for options */
+  font-size: 16px; /* Consistent font size */
+  font-weight: 700; /* Bold text */
+}
+
+/* Change border color and add shadow on focus */
+select:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
+  outline: none; /* Remove outline */
+}
+
+/* Custom arrow (optional) */
+select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23444%22%20d%3D%22M2%205L0%202h4z%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px 12px;
+  padding-right: 30px; /* Add padding to make room for the arrow */
+}
+.review-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.book-opinion textarea {
+  width: 600px;
+  border-radius: 10px;
+  height: 200px;
+  resize: none;
+  border: 1px solid rgb(112, 112, 112);
+  padding: 10px;
+}
+.post-review {
+  margin-top: 20px;
+  margin-left: 80%;
+  padding: 5px 7px;
+  border: 1px solid rgb(112, 112, 112);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  transform: translateY(-2px);
+  border-radius: 5px;
+  font-weight: 700;
+}
+.post-review:hover {
+  background-color: var(--blue);
+  color: white;
+}
+.review {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 600px;
+}
+.review-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 300px;
+  margin-left: 20px;
+}
+.review-info p {
+  font-weight: 700;
+}
+.book-opinion {
+  font-weight: 900;
+}
+.book-opinion label {
+  margin-left: 10px;
+}
+.book-image img {
+  border-radius: 10px;
+  object-fit: cover;
+  height: 190px;
+  width: 150px;
+  box-shadow: 5px 5px 10px rgba(160, 160, 160, 0.5);
+}
+.review-create {
+  height: 40px;
+  margin: 0px;
+}
+
+/*book by id modal*/
+.modal-content-book {
+  display: flex;
+  transition: 0.3s ease-in-out;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  height: 550px;
+  width: 700px;
+  z-index: 2;
+}
+
+.modal-content .box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.modal-content .box .bookImage {
+  width: 160px;
+  height: 200px;
+  object-fit: cover;
+  box-shadow: 5px 5px 10px rgba(160, 160, 160, 0.5);
+  border-radius: 10px;
+  margin-right: 40px;
+}
+.modal .box .book-info {
+  margin: 0;
+}
+.btn-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 730px) {
+  .search {
     margin-left: 10px;
-    border: 0px;
-    cursor: pointer;
   }
-  .book-info p {
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
+  .modal {
+    margin-top: 70px;
   }
-  
-  .title {
-    font-size: 21px;
-    font-weight: 700;
-  }
-  .wrong p {
-    font-weight: 700;
-    width: 75vh;
-    padding: 10px;
-    margin: 15px;
-    border-radius: 10px;
-    background-color: rgb(255, 43, 43);
-    color: white;
-  }
-  .pagination-box {
-    display: flex;
-    justify-content: center;
-  }
-  .pagination {
-    display: flex;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    justify-content: center;
-    align-items: center;
-  }
-  .pagination p {
-    margin: 0px 20px;
-  }
-  .pagination button {
-    padding: 5px;
-  }
-  
   .modal-content {
-    height: 540px !important;
-  }
-  .content {
     display: flex;
-    width: 100%;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    height: 900px;
   }
-  .content p {
-    margin-left: 5px;
-    margin-top: 7px;
+  .both-inputs {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
-  .left-inputs {
+  #description {
+    height: 150px;
+  }
+  .box {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-buttons {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
   }
-  .descrip textarea {
-    height: 300px;
-    padding: 5px;
-    resize: none;
-    border: 1px solid #a76657;
-    border-radius: 3px;
-  }
-  .modal-create input {
-    display: flex;
-    background-color: #f1f1f1;
-    border: 1px solid #a76657;
-    flex-direction: column;
-    border-radius: 0px;
-    outline: 0;
-    border-width: 0 0 2px;
+  .modal-buttons button {
     width: 200px;
-    height: 26px;
-    padding: 5px;
+    margin-bottom: 10px;
   }
-  input:focus {
-    border-color: green;
-    outline: 1px dotted #ffffff00;
-  }
-  .add-cancel-button {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s ease-in-out;
-    margin-top: 10px;
-  }
-  .cancel-button {
-    background-color: white;
-    border: 1px solid #a76657;
-    transition: 0.3s ease-in-out;
-    color: #a76657;
-    font-weight: 900;
-  }
-  .cancel-button:hover{
-    background-color: #a76657;
-    color: white;
-  }
-  .add-button {
-    background-color: #a76657;
-    color: white;
-    transition: 0.3s ease-in-out;
-    font-weight: 900;
-  }
-  
-  .add-button:hover {
-    background-color: white;
-    color: #a76657;
-    border: 1px solid #a76657;
-    border-radius: 5px;
-  }
-  .input-file {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    padding: 10px 3px;
-    justify-content: center;
-    border: 3px dashed #a76657;
-    align-items: center;
-    cursor: pointer;
-    margin-top: 5px;
-  }
-  .input-file input {
-    display: none;
-  }
-  select {
-    width: 100%; /* Make it full width, adjust as needed */
-    padding: 10px; /* Add padding for better appearance */
-    font-size: 16px; /* Increase font size */
-    font-weight: 700; /* Make the font bold */
-    border-radius: 5px; /* Round the corners */
-    background-color: #f4f4f4; /* Light background color */
-    border: 2px solid #ddd; /* Light border color */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    appearance: none; /* Remove default arrow (can replace with custom arrow if desired) */
-    cursor: pointer; /* Change cursor to pointer */
-    margin-bottom: 50px;
-    transition:
-      border-color 0.3s ease-in-out,
-      box-shadow 0.3s ease-in-out;
-  }
-  
-  /* Style the options */
-  select option {
-    background-color: #ffffff; /* White background for options */
-    font-size: 16px; /* Consistent font size */
-    font-weight: 700; /* Bold text */
-  }
-  
-  /* Change border color and add shadow on focus */
-  select:focus {
-    border-color: #007bff; /* Blue border on focus */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
-    outline: none; /* Remove outline */
-  }
-  
-  /* Custom arrow (optional) */
-  select {
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%204%205%22%3E%3Cpath%20fill%3D%22%23444%22%20d%3D%22M2%205L0%202h4z%22/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px top 50%;
-    background-size: 12px 12px;
-    padding-right: 30px; /* Add padding to make room for the arrow */
-  }
-  .review-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .book-opinion textarea {
-    width: 600px;
-    border-radius: 10px;
-    height: 200px;
-    resize: none;
-    border: 1px solid rgb(112, 112, 112);
-    padding: 10px;
-  }
-  .post-review {
-    margin-top: 20px;
-    margin-left: 80%;
-    padding: 5px 7px;
-    border: 1px solid rgb(112, 112, 112);
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-    transform: translateY(-2px);
-    border-radius: 5px;
-    font-weight: 700;
-  }
-  .post-review:hover {
-    background-color: var(--blue);
-    color: white;
+  h2 {
+    font-size: 20px;
   }
   .review {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 600px;
-  }
-  .review-info {
-    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    width: 300px;
-    margin-left: 20px;
+    align-items: center;
+    justify-content: center;
   }
-  .review-info p {
-    font-weight: 700;
+  .review textarea {
+    width: 200px;
   }
   .book-opinion {
-    font-weight: 900;
-  }
-  .book-opinion label {
-    margin-left: 10px;
-  }
-  .book-image img {
-    border-radius: 10px;
-    object-fit: cover;
-    height: 190px;
-    width: 150px;
-    box-shadow: 5px 5px 10px rgba(160, 160, 160, 0.5);
-  }
-  .review-create {
-    height: 40px;
-    margin: 0px;
-  }
-  
-  /*book by id modal*/
-  .modal-content-book {
     display: flex;
-    transition: 0.3s ease-in-out;
-    align-items: flex-start;
-    justify-content: space-evenly;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    line-height: 1.4;
-    background: #f1f1f1;
-    padding: 14px 28px;
-    border-radius: 3px;
-    height: 550px;
-    width: 700px;
-    z-index: 2;
+    margin-bottom: 10px;
   }
-  
-  .modal-content .box {
-    width: 100%;
-    height: 100%;
+  .review {
+    padding-bottom: 0px;
+  }
+  .modal-buttons {
     display: flex;
     flex-direction: row;
   }
-  
-  .modal-content .box .bookImage {
-    width: 160px;
-    height: 200px;
-    object-fit: cover;
-    box-shadow: 5px 5px 10px rgba(160, 160, 160, 0.5);
-    border-radius: 10px;
-    margin-right: 40px;
-  }
-  .modal .box .book-info {
-    margin: 0;
-  }
-  .btn-modal{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  @media screen and (max-width: 730px) {
-    .search {
-      margin-left: 10px;
-    }
-    .modal{
-      margin-top: 70px;
-    }
-    .modal-content{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 30px;
-      height: 900px;
-    }
-    .both-inputs{
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    #description{
-      height: 150px;
-    }
-    .box{
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-buttons{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    .modal-buttons button{
-      width: 200px;
-      margin-bottom: 10px;
-    }
-    h2{
-      font-size: 20px;
-    }
-    .review{
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .review textarea{
-      width: 200px;
-    }
-    .book-opinion{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      margin-bottom: 10px;
-    }
-    .review{
-      padding-bottom: 0px;
-    }
-    .modal-buttons{
-      display: flex;
-      flex-direction: row;
-    }
-  }
+}
 .box-book {
   display: flex !important;
   flex-direction: row !important;
