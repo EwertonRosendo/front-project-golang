@@ -2,12 +2,12 @@
   margin: 0px;
   padding: 0px;
 }
-.main {
+.google-main {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.body {
+.google-body {
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -19,11 +19,11 @@
   margin-left: 200px;
   margin-right: 200px;
 }
-.books {
+.google-books {
   display: flex;
   flex-wrap: wrap;
 }
-.book-box {
+.google-book-box {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -37,22 +37,22 @@
   border: 1px solid rgb(185, 185, 185);
 }
 
-.box {
+.google-box {
   width: 300px;
 }
-.book-title-img {
+.google-book-title-img {
   display: flex;
   align-items: flex-start;
   height: 220px;
 }
-.book-title-img img {
+.google-book-title-img img {
   padding: 5px;
   border-radius: 30px;
   height: 200px;
   width: 160px;
   object-fit: cover;
 }
-.book-info {
+.google-book-info {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -60,12 +60,12 @@
   justify-content: space-between;
   margin-bottom: 7px;
 }
-.book-info p {
+.google-book-info p {
   font-size: 18px;
   margin-top: 15px;
   margin-left: 10px;
 }
-.book-info button {
+.google-book-info button {
   width: 280px;
   margin-top: 5px;
   padding: 6px;
@@ -76,18 +76,18 @@
   border: 0px;
   cursor: pointer;
 }
-.title {
+.google-title {
   font-size: 21px;
   font-weight: 700;
 }
-.search {
+.google-search {
   margin-top: 20px;
   margin-left: 20vh;
   width: 300px;
   background-color: #4184d2;
   border-radius: 5px;
 }
-.search input {
+.google-search input {
   height: 35px;
   width: 200px;
   margin-left: 1px;
@@ -97,7 +97,7 @@
   outline: none;
   border-radius: 3px;
 }
-.search button {
+.google-search button {
   padding: 5px;
   height: 25px;
   border-radius: 0px 20px 5px 0px;
@@ -108,23 +108,23 @@
   cursor: pointer;
   font-size: 18px;
 }
-.search input:focus {
+.google-search input:focus {
   border: 1px solid #4184d2;
 }
-.pagination-box {
+.google-pagination-box {
   display: flex;
   justify-content: center;
 }
-.pagination {
+.google-pagination {
   display: flex;
   margin-top: 10px;
   margin-bottom: 20px;
   justify-content: center;
   align-items: center;
 }
-.pagination p {
+.google-pagination p {
   margin: 0px 20px;
 }
-.pagination button {
+.google-pagination button {
   padding: 5px;
 }

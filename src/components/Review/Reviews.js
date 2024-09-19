@@ -10,7 +10,7 @@ const Reviews = (props) => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 5;
-  
+
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = props.reviews.slice(firstPostIndex, lastPostIndex);

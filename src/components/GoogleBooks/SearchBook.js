@@ -7,7 +7,7 @@ const GoogleBooks = (props) => {
     axios
       .get(`http://localhost:5000/googlebooks/${title}`)
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         props.booksList(response.data);
       })
       .catch((e) => {
@@ -23,7 +23,7 @@ const GoogleBooks = (props) => {
 
   return (
     <React.Fragment>
-      <div className="search">
+      <div className="google-search">
         <input
           type="search"
           placeholder={"Search book by title"}

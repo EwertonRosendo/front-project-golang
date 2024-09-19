@@ -4,7 +4,6 @@ import axios from "axios";
 import Reviews from "../../components/Review/Reviews";
 import "./AllReviews.css";
 
-
 const AllReviews = (props) => {
   const [reviews, setReviews] = useState([]);
   const [yourReviews, setYourReviews] = useState([]);

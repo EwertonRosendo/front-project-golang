@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import DeleteModal from "../../components/OurLibrary/DeleteModal";
 
 import UpdateModal from "../../components/OurLibrary/UpdateModal";
@@ -9,7 +9,7 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-import "./bookById.css"
+import "./bookById.css";
 
 const BookById = (props) => {
   const { bookId } = useParams(); // Extract the book ID from the URL
@@ -61,7 +61,7 @@ const BookById = (props) => {
         <div className="box">
           <div className="book-img">
             <img
-              src={"http://localhost:3000/"+cover}
+              src={"http://localhost:5000/static/" + cover}
               alt={`${book.title} image`}
               className="bookImage"
             />

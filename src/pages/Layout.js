@@ -4,10 +4,9 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 
 const Layout = (props) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["name"]);
+  const navigate = useNavigate();
 
-  const [cookies, setCookie, removeCookie] = useCookies(['name']);
-  const navigate = useNavigate()
-  
   const logged_in = () => {
     if (cookies.nick) {
       return <button onClick={handleLogOut}>Logout</button>;
@@ -26,13 +25,13 @@ const Layout = (props) => {
   };
 
   const handleLogOut = () => {
-    removeCookie("id")
-    removeCookie("name")
-    removeCookie("email")
-    removeCookie("nick")
-    removeCookie("image")
-    removeCookie("token")
-    navigate("/login")
+    removeCookie("id");
+    removeCookie("name");
+    removeCookie("email");
+    removeCookie("nick");
+    removeCookie("image");
+    removeCookie("token");
+    navigate("/login");
   };
 
   return (

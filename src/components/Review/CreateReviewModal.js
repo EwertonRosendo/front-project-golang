@@ -60,9 +60,9 @@ export default function Modal(props) {
       </button>
 
       {modal && (
-        <div className="modal modal-create">
+        <div className="modal modal-create-review">
           <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content">
+          <div className="modal-content-review">
             <h2>Create a new review about {props.book.title}</h2>
             <div className="content">
               <div className="review">

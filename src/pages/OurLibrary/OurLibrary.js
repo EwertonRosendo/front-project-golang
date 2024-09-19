@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import Modal from "../../components/OurLibrary/CreateBookModal";
-import CreateReview from "../../components/Review/CreateReviewModal"
+import CreateReview from "../../components/Review/CreateReviewModal";
 import ShowBookModal from "../../components/OurLibrary/ShowBookModal";
-
-import "./ourLibrary.css"
+import { useCookies } from "react-cookie";
+import "./ourLibrary.css";
 
 const OurLibrary = (props) => {
   const baseURL = "http://localhost:5000/books";
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]); // Certifique-se de incluir 'token'
   const [myBooks, setMyBooks] = useState([]);
   const [cover, setCover] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +18,7 @@ const OurLibrary = (props) => {
   const firstPostIndex = lastPostIndex - postsPerPage;
   const currentPosts = myBooks.slice(firstPostIndex, lastPostIndex);
   const nextPage = () => {
-    if (myBooks[postsPerPage * currentPage ] != undefined) {
+    if (myBooks[postsPerPage * currentPage] != undefined) {
       setCurrentPage(currentPage + 1);
       return true;
     }
@@ -44,11 +45,11 @@ const OurLibrary = (props) => {
   const allMyBooks = currentPosts.map((book, index) => {
     //book = book.attributes;
     return (
-      <div key={index} >
+      <div key={index}>
         <div className="book-box">
           <div className="book-title-img">
             <img
-              src={"http://localhost:3000/"+book.thumbnail}
+              src={"http://localhost:5000/static/" + book.thumbnail}
               alt={`${book.title} image`}
               className="bookImage"
             />
@@ -66,14 +67,16 @@ const OurLibrary = (props) => {
                 ? book.description.split(" ").slice(0, 5).join(" ")
                 : ""}{" "}
             </p>
-            <ShowBookModal
-              book={book}
-              cover={book.thumbnail}
-            />
-            <CreateReview
-              book={book}
-              cover={book.cover_url ? book.cover_url : book.url_image}
-            />
+            <ShowBookModal book={book} cover={book.thumbnail} />
+            {cookies.id && cookies["token"] ? (
+              <CreateReview
+                book={book}
+                cover={book.cover_url ? book.cover_url : book.url_image}
+              />
+            ) : (
+              <></>
+            )}
+
             <p>
               {book.published_at
                 ? "Published at " + book.published_at

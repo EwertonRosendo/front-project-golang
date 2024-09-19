@@ -4,16 +4,22 @@ import { FontSizeOutlined } from "@ant-design/icons";
 import { TiPencil } from "react-icons/ti";
 import { FaRegBuilding } from "react-icons/fa";
 import { FaRegCalendarAlt } from "react-icons/fa";
-import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 import { LuTextSelect } from "react-icons/lu";
 import { MdOutlineFileUpload } from "react-icons/md";
 
 export default function Modal() {
   const [modal, setModal] = useState(false);
+
   const [formFile, setFormFile] = useState({
     title: "",
-    cover: null,
+    "form-id": null,
   });
+
+  const handleFileChange = (event) => {
+    setFormFile({
+      "form-id": event.target.files[0],
+    });
+  };
 
   const [formData, setFormData] = useState({
     title: "",
@@ -22,7 +28,6 @@ export default function Modal() {
     published_at: "",
     url_image: "no_url",
     description: "",
-    cover: null,
   });
 
   const handleInputChange = (event) => {
@@ -33,13 +38,6 @@ export default function Modal() {
     });
   };
 
-  const handleFileChange = (event) => {
-    setFormData({
-      ...formData,
-      cover: event.target.files[0],
-    });
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -47,6 +45,7 @@ export default function Modal() {
   };
 
   const handleAddBook = () => {
+    console.log(modal);
     axios
       .post("http://localhost:5000/books/add", formData, {
         headers: {
@@ -56,15 +55,19 @@ export default function Modal() {
       .then((response) => {
         if (response.status === 201) {
           toggleModal();
-          axios
-          .post("http://localhost:5000/files", formFile, {
-            headers: {
-              "Content-Type": "multipart/form-data",
+          axios.post(
+            `http://localhost:5000/files/${response.data.id}`,
+            formFile,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
             },
-          })
+          );
         }
       })
       .catch((e) => console.log(e));
+    console.log(modal);
   };
 
   const toggleModal = () => {
@@ -84,9 +87,9 @@ export default function Modal() {
       </button>
 
       {modal && (
-        <div className="modal modal-create">
+        <div className="modal modal-create-book">
           <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content">
+          <div className="modal-content-book">
             <h2>Create or Add a Book!</h2>
             <div className="content">
               <form
@@ -174,19 +177,19 @@ export default function Modal() {
                     </div>
                     <br />
                     <div className="input-file">
-                      <label htmlFor="cover">
+                      <label htmlFor="form-id">
                         <MdOutlineFileUpload
                           fontSize={"40px"}
                           color="#A76657"
                         />
                       </label>
-                      <label htmlFor="cover">
+                      <label htmlFor="form-id">
                         Drop a file or click to upload
                       </label>
                       <input
                         type="file"
-                        id="cover"
-                        name="file-id"
+                        id="form-id"
+                        name="form-id"
                         accept="image/png, image/jpeg"
                         onChange={handleFileChange}
                         max={new Date().toISOString().split("T")[0]}

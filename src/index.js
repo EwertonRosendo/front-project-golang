@@ -1,8 +1,6 @@
-
-
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css';
+import "./App.css";
 import Layout from "./pages/Layout";
 import GoogleBooks from "./pages/GoogleBooks/GoogleBooks";
 import OurLibrary from "./pages/OurLibrary/OurLibrary";
@@ -30,5 +28,5 @@ export default function App() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);

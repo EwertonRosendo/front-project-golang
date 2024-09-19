@@ -23,7 +23,6 @@ export default function DeleteModal(props, title) {
       })
       .then((response) => {
         if (response.status == 200) {
-          
         }
       });
   };
@@ -40,7 +39,7 @@ export default function DeleteModal(props, title) {
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content">
+          <div className="modal-content-book">
             <h2> Delete {props.title}</h2>
             <div>
               <p>
