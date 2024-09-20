@@ -20,6 +20,7 @@ export default function Update(props, title) {
         {
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${cookies.token.token || null}`
           },
         },
       )
@@ -31,6 +32,7 @@ export default function Update(props, title) {
             {
               headers: {
                 "Content-Type": "multipart/form-data",
+                "Authorization": `Bearer ${cookies.token.token || null}`
               },
             },
           );

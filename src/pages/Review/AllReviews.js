@@ -4,12 +4,16 @@ import axios from "axios";
 import Reviews from "../../components/Review/Reviews";
 import "./AllReviews.css";
 
+import { useCookies } from "react-cookie";
+
+
 const AllReviews = (props) => {
+  const [cookies, setCookie, removeCookie] = useCookies(["name"]); // Certifique-se de incluir 'token'
   const [reviews, setReviews] = useState([]);
   const [yourReviews, setYourReviews] = useState([]);
 
   useEffect(() => {
-    const url = "http://localhost:3000/reviews.json";
+    const url = "http://localhost:5000/reviews";
     axios.get(url).then((response) => {
       if (response.data) {
         setReviews(response.data);
@@ -19,8 +23,8 @@ const AllReviews = (props) => {
     });
   }, []);
   useEffect(() => {
-    if (props.user_id) {
-      const url = `http://localhost:3000/reviews/user/${props.user_id}.json`;
+    if (cookies.id) {
+      const url = `http://localhost:5000/reviews/users/${cookies.id}`;
       axios.get(url).then((response) => {
         if (response.data) {
           setYourReviews(response.data);
@@ -33,11 +37,11 @@ const AllReviews = (props) => {
 
   return (
     <React.Fragment>
-      {props.user_id ? (
+      {cookies.id ? (
         <Reviews
           reviews={yourReviews}
           owner={"Your reviews"}
-          user_id={props.user_id}
+          user_id={cookies.id}
         />
       ) : null}
       <Reviews

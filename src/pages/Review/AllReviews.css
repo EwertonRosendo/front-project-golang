@@ -5,7 +5,7 @@
 }
 .review {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 300px;
   height: 550px;
   margin: 10px;
@@ -27,6 +27,15 @@
   object-fit: cover;
   border-radius: 5px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+.review .book-reviews {
+  display: flex;
+  height: 200px;
+  margin: 0px 15px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
 }
 .review .book-review {
   display: flex;
@@ -160,24 +169,6 @@ body.active-modal {
 
 .overlay {
   background: rgba(49, 49, 49, 0.8);
-}
-.modal-content-review {
-  display: flex;
-  transition: 0.3s ease-in-out;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  flex-direction: column;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  line-height: 1.4;
-  background: #f1f1f1;
-  padding: 14px 28px;
-  border-radius: 3px;
-  height: 300px;
-  width: 700px;
-  z-index: 2;
 }
 .close-modal {
   position: absolute;

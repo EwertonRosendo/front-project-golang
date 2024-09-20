@@ -36,6 +36,7 @@ const ListBooks = (props) => {
         {
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${cookies.token.token || null}`
           },
         },
       )

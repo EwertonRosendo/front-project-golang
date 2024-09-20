@@ -48,17 +48,17 @@ const Reviews = (props) => {
           </div>
           <div className="book-image">
             <img
-              src={review.cover_url || review.book.url_image}
+              src={"http://localhost:5000/static/"+review.book.thumbnail}
               alt={review.book.title}
             />
           </div>
-          <div className="book-review">
+          <div className="book-reviews">
             <p className="title">
               {review.book.title.split(" ").length < 13
                 ? review.book.title
                 : `${review.book.title.split(" ").slice(0, 13).join(" ")}..`}
             </p>
-            <p>{author}</p>
+            <p>{review.book.authors}</p>
             <div className="rating">
               <Rate style={{ fontSize: "30px" }} disabled value={rating} />
             </div>

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { DeleteOutlined } from "@ant-design/icons";
-
+import { useCookies } from "react-cookie";
 export default function DeleteModal(props) {
   const [modal, setModal] = useState(false);
+  
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]); // Certifique-se de incluir 'token'
 
   const toggleModal = () => {
     setModal(!modal);
@@ -15,13 +17,16 @@ export default function DeleteModal(props) {
     document.body.classList.remove("active-modal");
   }
 
-  const handleDeleteReview = (id) => {
+  const handleDeleteReview = () => {
     axios
-      .delete(`http://localhost:3000/reviews/${props.id}`)
-      .then((response) => {
-        if (response.status == 200) {
-          window.location.reload();
+      .delete(`http://localhost:5000/reviews/${props.id}`, 
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.token.token || null}`
+          }
         }
+      )
+      .then((response) => {
       });
   };
 
@@ -34,9 +39,9 @@ export default function DeleteModal(props) {
       />
 
       {modal && (
-        <div className="modal">
+        <div className="modal-delete-review">
           <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content">
+          <div className="modal-content-review">
             <h2>Delete this review!</h2>
             <p>
               You are about to delete your review about "{props.book}". this

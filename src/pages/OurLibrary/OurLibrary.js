@@ -71,7 +71,7 @@ const OurLibrary = (props) => {
             {cookies.id && cookies["token"] ? (
               <CreateReview
                 book={book}
-                cover={book.cover_url ? book.cover_url : book.url_image}
+                cover={book.thumbnail}
               />
             ) : (
               <></>
@@ -94,7 +94,7 @@ const OurLibrary = (props) => {
   });
   return (
     <React.Fragment>
-      <Modal />
+      {cookies.id ? <Modal /> : <></> }
       <div className="main">
         <div className="body">{allMyBooks}</div>
       </div>

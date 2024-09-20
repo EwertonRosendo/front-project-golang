@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { TbTrashXFilled } from "react-icons/tb";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 export default function DeleteModal(props, title) {
   const [modal, setModal] = useState(false);
-
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -19,6 +20,7 @@ export default function DeleteModal(props, title) {
       .delete(`http://localhost:5000/books/${props.book.id}`, {
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${cookies.token.token || null}`
         },
       })
       .then((response) => {

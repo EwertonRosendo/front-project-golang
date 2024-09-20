@@ -3,6 +3,9 @@ import axios from "axios";
 import { Rate } from "antd";
 import { useParams } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
+import "./ReviewById.css"
+
+import { useCookies } from "react-cookie";
 
 const ReviewById = (props) => {
   const [review, setReview] = useState({});
@@ -11,12 +14,18 @@ const ReviewById = (props) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const { id } = useParams();
+  const [cookies, setCookie, removeCookie] = useCookies(["name"]); // Certifique-se de incluir 'token'
+
   const postComment = () => {
     axios
-      .post(`http://localhost:3000/reviews/${id}/comments`, {
-        content: comment,
-        likes: 0,
-        review_id: id,
+      .post(`http://localhost:5000/reviews/${id}/comments`, {
+        comment: comment,
+        user: {
+          id: parseInt(user.id)
+        },
+        review:{
+          id: parseInt(id)
+        }
       })
       .then((response) => {
         if (response.status === 200) {
@@ -26,7 +35,7 @@ const ReviewById = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/reviews/${id}.json`)
+      .get(`http://localhost:5000/reviews/${id}`)
       .then((response) => {
         setUser(response.data.user);
         setReview(response.data);
@@ -34,27 +43,46 @@ const ReviewById = (props) => {
       })
       .catch((e) => console.log(e));
   }, []);
-
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/reviews/${id}/comments`)
+    
+
+      axios
+      .get(`http://localhost:5000/reviews/${id}/comments`, {})
       .then((response) => {
+        if (response.data == null){
+          return
+        }
         setComments(response.data);
       })
       .catch((e) => console.log(e));
   }, []);
 
-  const handleDeleteComment = (review_id, id) => {
-    if (!window.confirm("Do you realy want to delete this comment?")) {
+  const handleDeleteComment = async (comment_id) => {
+    if (!window.confirm("Do you really want to delete this comment?")) {
       return;
     }
-    axios
-      .delete(`http://localhost:3000/reviews/${review_id}/comments/${id}`)
-      .then((response) => {
-        if (response.status === 200) {
-        }
+  
+    try {
+      const response = await fetch(`http://localhost:5000/comments/${comment_id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${cookies.token.token || null}`,
+        },
       });
+  
+      if (response.ok) {
+        // Handle success (e.g., refresh the comments list)
+      } else {
+        // Handle response errors (e.g., 4xx, 5xx status codes)
+        console.error("Error deleting comment:", response.statusText);
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error("There was an error deleting the comment:", error);
+    }
   };
+  
+  
 
   const commentsComponent = comments.map((comment, index) => (
     <div key={comment.id}>
@@ -70,13 +98,13 @@ const ReviewById = (props) => {
               <p>{comment.user.name}</p>
             </div>
             <div>
-              <p>{comment.created_at.substring(0, 10)}</p>
+              <p>{comment.CreatedAt.substring(0, 10)}</p>
             </div>
           </div>
           <div className="comment-content">
-            <p>{comment.content}</p>
+            <p>{comment.comment}</p>
           </div>
-          {comment.user.id == props.user_id ? (
+          {comment.user.id == cookies.id ? (
             <div
               style={{
                 display: "flex",
@@ -86,7 +114,7 @@ const ReviewById = (props) => {
             >
               <a
                 className="delete-comment"
-                onClick={() => handleDeleteComment(id, comment.id)}
+                onClick={() => handleDeleteComment(comment.id)}
               >
                 delete your comment
               </a>
@@ -100,15 +128,15 @@ const ReviewById = (props) => {
   ));
   return (
     <React.Fragment>
-      <div className="content">
+      <div className="content-review">
         <div className="review">
           <div className="book-image">
             <img
-              src={review.cover_url ? review.cover_url : book.url_image}
+              src={"http://localhost:5000/static/"+book.thumbnail}
               alt=""
             />
           </div>
-          <div className="book-info">
+          <div className="review-info">
             <p>{book.title}</p>
             <p>Reviewed by {user.name}</p>
             <p>Status: {review.status}</p>
@@ -119,7 +147,7 @@ const ReviewById = (props) => {
           </div>
         </div>
         <div className="opinion">
-          <p>{review.book_opinion}</p>
+          <p>{review.review}</p>
         </div>
         <div className="comments">
           <div style={{ display: "flex" }}>
@@ -149,7 +177,7 @@ const ReviewById = (props) => {
             </div>
           </div>
 
-          {commentsComponent}
+          { comments ? commentsComponent : <></>}
         </div>
       </div>
     </React.Fragment>

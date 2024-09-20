@@ -8,10 +8,10 @@ import { MdOutlineFileUpload } from "react-icons/md";
 
 import PropTypes from "prop-types";
 import axios from "axios";
-
 import "./bookById.css";
 
 const BookById = (props) => {
+
   const { bookId } = useParams(); // Extract the book ID from the URL
 
   const baseURL = `http://localhost:5000/books/${bookId}`;

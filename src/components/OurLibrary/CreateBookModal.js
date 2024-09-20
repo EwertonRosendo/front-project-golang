@@ -6,10 +6,11 @@ import { FaRegBuilding } from "react-icons/fa";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { LuTextSelect } from "react-icons/lu";
 import { MdOutlineFileUpload } from "react-icons/md";
-
+import { useCookies } from "react-cookie";
 export default function Modal() {
   const [modal, setModal] = useState(false);
-
+  
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]); // Certifique-se de incluir 'token'
   const [formFile, setFormFile] = useState({
     title: "",
     "form-id": null,
@@ -61,6 +62,7 @@ export default function Modal() {
             {
               headers: {
                 "Content-Type": "multipart/form-data",
+                "Authorization": `Bearer ${cookies.token.token}`
               },
             },
           );

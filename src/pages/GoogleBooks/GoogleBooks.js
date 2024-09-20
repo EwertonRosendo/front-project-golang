@@ -12,17 +12,16 @@ const GoogleBooks = (props) => {
 
   useEffect(() => {
     const url = "http://localhost:5000/googlebooks";
-    fetch(url)
-      .then((res) => {
-        console.log(res.data);
-        if (res.ok) {
-          return res.json();
-        }
-        throw new Error("Network response was not ok.");
+
+    axios.get(url)
+      .then((response) => {
+        setBooks(response.data);
       })
-      .then((res) => setBooks(res))
-      .catch((error) => console.error("Error fetching books:", error));
-  }, [cookies]);
+      .catch((error) => {
+        console.error("Error fetching books:", error);
+      });
+  }, []);
+
   console.log(cookies.id);
 
   return (
