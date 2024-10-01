@@ -12,24 +12,17 @@ export default function Modal() {
   const [modal, setModal] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
-  const handleFileChange = (event) => {
-    setFormData({
-      "form-id": event.target.files[0],
-    });
-  };
-
   const [formData, setFormData] = useState({
-    title: undefined,
-    author: undefined,
-    subtitle: undefined,
-    publisher: undefined,
-    published_at: undefined,
-    description: undefined,
+    title: "",
+    author: "",
+    publisher: "",
+    published_at: "",
+    subtitle:"",
+    description: "",
     "form-id": null,
   });
 
   const handleInputChange = (event) => {
-    console.log(event.target.value)
     const { id, value } = event.target;
     setFormData({
       ...formData,
@@ -37,14 +30,22 @@ export default function Modal() {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(formData)
-
-    handleAddBook();
+  const handleFileChange = (event) => {
+    setFormData({
+      ...formData,
+      "form-id": event.target.files[0],
+    });
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData();
+    for (const key in formData) {
+      data.append(`book[${key}]`, formData[key]);
+    }
+
+    handleAddBook(data);
+  };
   const handleAddBook = () => {
     console.log(modal);
     axios

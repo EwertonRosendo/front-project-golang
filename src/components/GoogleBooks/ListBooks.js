@@ -48,16 +48,16 @@ const ListBooks = (props) => {
           setShowModal(true);
           setTimeout(() => {
             setShowModal(false);
-            navigate("/GoogleBooks");
+            window.location.reload()
           }, 2000);
-          navigate("/GoogleBooks");
+          
         }
       })
       .catch((e) => {
         setShowFailure(true);
         setTimeout(() => {
           setShowFailure(false);
-          navigate("/GoogleBooks");
+          window.location.reload()
         }, 2000);
       });
   };
