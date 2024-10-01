@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function ConfirmationModal(props) {
-  const toggleModal = () => {
-    props.setShowModal(!props.showModal);
+export default function ModalConfirmation(props) {
+  const toggleModalConfirmation = () => {
+    props.setShowModalConfirmation(!props.showModalConfirmation);
   };
 
-  if (props.showModal) {
+  if (props.showModalConfirmation) {
     document.body.classList.add("active-modal");
   } else {
     document.body.classList.remove("active-modal");
@@ -13,11 +13,11 @@ export default function ConfirmationModal(props) {
 
   return (
     <>
-      {props.showModal && (
+      {props.showModalConfirmation && (
         <div className="modal">
-          <div onClick={toggleModal} className="overlay"></div>
+          <div onClick={toggleModalConfirmation} className="overlay"></div>
           <div
-            className="modal-content"
+            className="modal-content-book"
             style={{
               display: "flex",
               alignItems: "center",

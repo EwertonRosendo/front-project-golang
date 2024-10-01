@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { TbTrashXFilled } from "react-icons/tb";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import ModalFailure from "./ModalFailure";
 
 export default function DeleteModal(props, title) {
   const [modal, setModal] = useState(false);
+  const [showFailure, setShowFailure] = useState(false);
+  const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const toggleModal = () => {
     setModal(!modal);
@@ -20,12 +24,20 @@ export default function DeleteModal(props, title) {
       .delete(`http://localhost:5000/books/${props.book.id}`, {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${cookies.token.token || null}`
+          Authorization: `Bearer ${cookies.token.token || null}`,
         },
       })
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status == 204) {
+          navigate("/library");
         }
+      })
+      .catch((e) => {
+        setModal(false);
+        setShowFailure(true);
+        setTimeout(() => {
+          setShowFailure(false);
+        }, 2000);
       });
   };
 
@@ -38,10 +50,20 @@ export default function DeleteModal(props, title) {
         Delete this book
       </button>
 
+      {showFailure ? (
+        <ModalFailure
+          showModalConfirmation={showFailure}
+          setShowModalConfirmation={setShowFailure}
+          message="You can not delete this book, there are reviews using it."
+        />
+      ) : (
+        <></>
+      )}
+
       {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content-book">
+          <div className="modal-content-book" style={{height:"300px"}}>
             <h2> Delete {props.title}</h2>
             <div>
               <p>

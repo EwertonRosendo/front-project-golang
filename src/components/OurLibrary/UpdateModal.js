@@ -6,38 +6,24 @@ export default function Update(props, title) {
   const [modal, setModal] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
   const update_book = () => {
-    axios
-      .put(
-        `http://localhost:5000/books/${props.id}`,
-        {
-          title: props.title,
-          publisher: props.publisher,
-          published_at: props.published_at,
-          description: props.description,
-          authors: props.author,
-          id: cookies.id,
+    axios.put(
+      `http://localhost:5000/books/${props.id}`,
+      {
+        title: props.title,
+        publisher: props.publisher,
+        published_at: props.published_at,
+        description: props.description,
+        authors: props.author,
+        id: cookies.id,
+        "form-id": props.formFile["form-id"],
+      },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${ cookies.token.token || 'null' }`,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${cookies.token.token || null}`
-          },
-        },
-      )
-      .then((response) => {
-        if (response.status === 204) {
-          axios.post(
-            `http://localhost:5000/files/${props.id}`,
-            props.formFile,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": `Bearer ${cookies.token.token || null}`
-              },
-            },
-          );
-        }
-      });
+      },
+    );
   };
   const toggleModal = () => {
     setModal(!modal);
@@ -67,7 +53,7 @@ export default function Update(props, title) {
               </p>
               <p>Are you sure you want to do this?</p>
             </div>
-            <div className="modal-buttons">
+            <div className="modal-buttons" style={{display:"flex",  flexDirection:"row", alignItems:"center", justifyContent:"center"}}>
               <button onClick={toggleModal} className="cancel-button">
                 Cancel
               </button>

@@ -7,7 +7,6 @@ const GoogleBooks = (props) => {
     axios
       .get(`http://localhost:5000/googlebooks/${title}`)
       .then((response) => {
-        console.log(response.data);
         props.booksList(response.data);
       })
       .catch((e) => {
@@ -26,6 +25,7 @@ const GoogleBooks = (props) => {
       <div className="google-search">
         <input
           type="search"
+          style={{fontSize:"17px"}}
           placeholder={"Search book by title"}
           onChange={(e) => {
             setTitle(e.target.value);

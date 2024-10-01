@@ -7,7 +7,7 @@
 }
 .review {
   display: flex;
-  width: 600px;
+  width: 300px;
 }
 .review .book-info {
   font-size: 18px;

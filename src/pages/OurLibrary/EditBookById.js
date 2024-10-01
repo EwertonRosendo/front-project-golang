@@ -11,7 +11,6 @@ import axios from "axios";
 import "./bookById.css";
 
 const BookById = (props) => {
-
   const { bookId } = useParams(); // Extract the book ID from the URL
 
   const baseURL = `http://localhost:5000/books/${bookId}`;

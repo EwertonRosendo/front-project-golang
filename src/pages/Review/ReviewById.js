@@ -3,7 +3,7 @@ import axios from "axios";
 import { Rate } from "antd";
 import { useParams } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
-import "./ReviewById.css"
+import "./ReviewById.css";
 
 import { useCookies } from "react-cookie";
 
@@ -18,17 +18,26 @@ const ReviewById = (props) => {
 
   const postComment = () => {
     axios
-      .post(`http://localhost:5000/reviews/${id}/comments`, {
-        comment: comment,
-        user: {
-          id: parseInt(user.id)
+      .post(
+        `http://localhost:5000/reviews/${id}/comments`,
+        {
+          comment: comment,
+          user: {
+            id: parseInt(user.id),
+          },
+          review: {
+            id: parseInt(id),
+          },
         },
-        review:{
-          id: parseInt(id)
-        }
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.token.token}`,
+          },
+        },
+      )
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === 201) {
+          window.location.reload()
         }
       });
   };
@@ -44,13 +53,11 @@ const ReviewById = (props) => {
       .catch((e) => console.log(e));
   }, []);
   useEffect(() => {
-    
-
-      axios
+    axios
       .get(`http://localhost:5000/reviews/${id}/comments`, {})
       .then((response) => {
-        if (response.data == null){
-          return
+        if (response.data == null) {
+          return;
         }
         setComments(response.data);
       })
@@ -61,28 +68,36 @@ const ReviewById = (props) => {
     if (!window.confirm("Do you really want to delete this comment?")) {
       return;
     }
-  
+
     try {
-      const response = await fetch(`http://localhost:5000/comments/${comment_id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${cookies.token.token || null}`,
+      const response = await fetch(
+        `http://localhost:5000/comments/${comment_id}/user/${cookies.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${cookies.token.token || null}`,
+          },
         },
-      });
-  
-      if (response.ok) {
-        // Handle success (e.g., refresh the comments list)
-      } else {
-        // Handle response errors (e.g., 4xx, 5xx status codes)
-        console.error("Error deleting comment:", response.statusText);
-      }
+      );
+
+      if (response.status === 204) {
+        window.location.reload()
+      } 
     } catch (error) {
       // Handle network or other errors
       console.error("There was an error deleting the comment:", error);
     }
   };
   
-  
+  const getStatus = () =>{
+    if (review.status == 3){
+      return "read"
+    }
+    else if (review.status == 2){
+      return "reading"
+    }
+    return "to read"
+  }
 
   const commentsComponent = comments.map((comment, index) => (
     <div key={comment.id}>
@@ -132,14 +147,14 @@ const ReviewById = (props) => {
         <div className="review">
           <div className="book-image">
             <img
-              src={"http://localhost:5000/static/"+book.thumbnail}
+              src={"http://localhost:5000/static/" + book.thumbnail}
               alt=""
             />
           </div>
-          <div className="review-info">
+          <div className="review-info" style={{justifyContent: "space-evenly"}}>
             <p>{book.title}</p>
             <p>Reviewed by {user.name}</p>
-            <p>Status: {review.status}</p>
+            <p>Status: {getStatus()}</p>
             <div className="rating">
               <p>Rating: </p>
               <Rate disabled value={review.rating} />
@@ -177,7 +192,7 @@ const ReviewById = (props) => {
             </div>
           </div>
 
-          { comments ? commentsComponent : <></>}
+          {comments ? commentsComponent : <></>}
         </div>
       </div>
     </React.Fragment>

@@ -69,10 +69,7 @@ const OurLibrary = (props) => {
             </p>
             <ShowBookModal book={book} cover={book.thumbnail} />
             {cookies.id && cookies["token"] ? (
-              <CreateReview
-                book={book}
-                cover={book.thumbnail}
-              />
+              <CreateReview book={book} cover={book.thumbnail} />
             ) : (
               <></>
             )}
@@ -94,17 +91,17 @@ const OurLibrary = (props) => {
   });
   return (
     <React.Fragment>
-      {cookies.id ? <Modal /> : <></> }
+      {cookies.id ? <Modal /> : <></>}
       <div className="main">
         <div className="body">{allMyBooks}</div>
       </div>
       <div className="pagination-box">
         <div className="pagination">
-          {prevPage ? <button onClick={prevPage}>Prev</button> : <></>}
+          {prevPage ? <button onClick={prevPage} className="agree-button">Prev</button> : <></>}
           <p>
             {currentPage}..{Math.ceil(myBooks.length / 10)}
           </p>
-          {nextPage ? <button onClick={nextPage}>Next</button> : <></>}
+          {nextPage ? <button onClick={nextPage} className="agree-button">Next</button> : <></>}
         </div>
       </div>
     </React.Fragment>

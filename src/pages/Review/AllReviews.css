@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   width: 300px;
-  height: 550px;
+  height: 500px;
   margin: 10px;
   font-size: 16px;
   background-color: #eeeae7;
@@ -37,22 +37,14 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
 }
-.review .book-review {
-  display: flex;
-  height: 100%;
-  margin: 0px 15px;
-  flex-direction: column;
-  justify-content: space-evenly;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 18px;
-}
-.review .book-review .title {
+
+.review .book-reviews .title {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 21px;
   font-weight: 700;
 }
-.review .book-review button {
+.review .book-reviews button {
   width: 170px;
   height: 46px;
   cursor: pointer;
@@ -62,8 +54,8 @@
   border: 1px rgb(114, 114, 114) solid;
   padding: 3px;
 }
-.review .book-review button:hover {
-  background-color: var(--blue);
+.review .book-reviews button:hover {
+  background-color: #a76657;
   transition: 0.3s ease-in-out;
   transform: translateY(-2px);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
@@ -132,7 +124,8 @@
 .user-info .owner {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  margin-right: 40px;
 }
 .user-info p {
   margin-left: 10px;
@@ -147,13 +140,14 @@ body.active-modal {
 .btn-modal {
   padding: 10px 20px;
   display: block;
+  margin-left: 5px;
   transition: 0.3s ease-in-out;
   font-size: 18px;
   border-radius: 5px;
   margin-top: 0px;
 }
 .btn-modal:hover {
-  background-color: var(--blue);
+  background-color: #ff3c3c;
   color: white;
 }
 .modal,

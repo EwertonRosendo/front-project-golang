@@ -4,7 +4,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useCookies } from "react-cookie";
 export default function DeleteModal(props) {
   const [modal, setModal] = useState(false);
-  
+
   const [cookies, setCookie, removeCookie] = useCookies(["token"]); // Certifique-se de incluir 'token'
 
   const toggleModal = () => {
@@ -19,15 +19,12 @@ export default function DeleteModal(props) {
 
   const handleDeleteReview = () => {
     axios
-      .delete(`http://localhost:5000/reviews/${props.id}`, 
-        {
-          headers: {
-            Authorization: `Bearer ${cookies.token.token || null}`
-          }
-        }
-      )
-      .then((response) => {
-      });
+      .delete(`http://localhost:5000/reviews/${props.id}/user/${cookies.id}`, {
+        headers: {
+          Authorization: `Bearer ${cookies.token.token || null}`,
+        },
+      })
+      .then((response) => {});
   };
 
   return (
@@ -39,16 +36,16 @@ export default function DeleteModal(props) {
       />
 
       {modal && (
-        <div className="modal-delete-review">
+        <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
-          <div className="modal-content-review">
+          <div className="modal-content-book" style={{height:"300px"}}>
             <h2>Delete this review!</h2>
             <p>
               You are about to delete your review about "{props.book}". this
               will remove your review permanently.
             </p>
             <p>Are you sure you want to do this?</p>
-            <div className="modal-buttons">
+            <div className="modal-buttons" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
               <button onClick={toggleModal} className="cancel-button">
                 Cancel
               </button>

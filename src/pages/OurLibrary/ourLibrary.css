@@ -134,6 +134,9 @@ button {
   display: flex;
   flex-direction: column;
 }
+.left-inputs input {
+  padding: 5px;
+}
 .descrip textarea {
   height: 300px;
   padding: 5px;
@@ -184,6 +187,20 @@ input:focus {
 }
 
 .add-button:hover {
+  background-color: white;
+  color: #a76657;
+  border: 1px solid #a76657;
+  border-radius: 5px;
+}
+
+.agree-button {
+  background-color: #a76657;
+  color: white;
+  transition: 0.3s ease-in-out;
+  font-weight: 900;
+}
+
+.agree-button:hover {
   background-color: white;
   color: #a76657;
   border: 1px solid #a76657;
@@ -249,7 +266,7 @@ select {
   justify-content: center;
 }
 .book-opinion textarea {
-  width: 600px;
+  width: 450px;
   border-radius: 10px;
   height: 200px;
   resize: none;
@@ -280,9 +297,9 @@ select {
 .review-info {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   width: 300px;
-  margin-left: 20px;
+  margin-right: 20px;
 }
 .review-info p {
   font-weight: 700;
@@ -301,6 +318,13 @@ select {
   box-shadow: 5px 5px 10px rgba(160, 160, 160, 0.5);
 }
 .review-create {
+  background-color: #a76657;
+  height: 40px;
+  margin: 0px;
+}
+.review-create:hover {
+  border: solid 1px 1px #a76657 !important;
+  background-color: #ffffff !important;
   height: 40px;
   margin: 0px;
 }

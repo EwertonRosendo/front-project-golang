@@ -6,11 +6,10 @@ import "./AllReviews.css";
 
 import { useCookies } from "react-cookie";
 
-
 const AllReviews = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies(["name"]); // Certifique-se de incluir 'token'
   const [reviews, setReviews] = useState([]);
-  const [yourReviews, setYourReviews] = useState([]);
+  const [yourReviews, setYourReviews] = useState(null);
 
   useEffect(() => {
     const url = "http://localhost:5000/reviews";
@@ -18,10 +17,11 @@ const AllReviews = (props) => {
       if (response.data) {
         setReviews(response.data);
       } else {
-        throw new Error("Network response was not ok.");
+        console.log(Error("Network response was not ok."));
       }
     });
   }, []);
+
   useEffect(() => {
     if (cookies.id) {
       const url = `http://localhost:5000/reviews/users/${cookies.id}`;
@@ -29,7 +29,7 @@ const AllReviews = (props) => {
         if (response.data) {
           setYourReviews(response.data);
         } else {
-          throw new Error("Network response was not ok.");
+          console.log(Error("Network response was not ok."));
         }
       });
     }
@@ -37,13 +37,15 @@ const AllReviews = (props) => {
 
   return (
     <React.Fragment>
-      {cookies.id ? (
+      {yourReviews ? (
         <Reviews
           reviews={yourReviews}
           owner={"Your reviews"}
           user_id={cookies.id}
         />
-      ) : null}
+      ) : (
+        <></>
+      )}
       <Reviews
         reviews={reviews}
         owner={"Others reviews"}

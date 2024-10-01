@@ -17,7 +17,7 @@ export default function Modal(props) {
   const navigate = useNavigate();
   return (
     <>
-      <button onClick={toggleModal} className="btn-modal review-create">
+      <button onClick={toggleModal} className="agree-button" style={{width:"150px", fontSize:"18px"}}>
         Show details
       </button>
 
@@ -59,7 +59,7 @@ export default function Modal(props) {
                 </div>
               </div>
             </div>
-            <div className="modal-buttons">
+            <div className="modal-buttons" style={{display:"flex", flexDirection:"row", width:"100%", justifyContent:"center", alignItems:"center"}}>
               <button onClick={toggleModal} className="cancel-button">
                 Close
               </button>

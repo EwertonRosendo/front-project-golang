@@ -39,8 +39,6 @@ const Login = (props) => {
             httpOnly: false,
           });
           navigate("/GoogleBooks");
-        } else {
-          console.log("wrong credentials");
         }
       })
       .catch((error) => console.error(error));

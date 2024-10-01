@@ -13,7 +13,8 @@ const GoogleBooks = (props) => {
   useEffect(() => {
     const url = "http://localhost:5000/googlebooks";
 
-    axios.get(url)
+    axios
+      .get(url)
       .then((response) => {
         setBooks(response.data);
       })
@@ -21,8 +22,6 @@ const GoogleBooks = (props) => {
         console.error("Error fetching books:", error);
       });
   }, []);
-
-  console.log(cookies.id);
 
   return (
     <React.Fragment>

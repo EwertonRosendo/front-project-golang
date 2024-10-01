@@ -48,7 +48,7 @@ const Reviews = (props) => {
           </div>
           <div className="book-image">
             <img
-              src={"http://localhost:5000/static/"+review.book.thumbnail}
+              src={"http://localhost:5000/static/" + review.book.thumbnail}
               alt={review.book.title}
             />
           </div>
@@ -87,12 +87,12 @@ const Reviews = (props) => {
       </div>
       <div className="pagination-box">
         <div className="pagination">
-          {currentPage > 1 && <button onClick={prevPage}>Prev</button>}
+          {currentPage > 1 && <button onClick={prevPage} className="agree-button">Prev</button>}
           <p>
             {currentPage} / {Math.ceil(props.reviews.length / postsPerPage)}
           </p>
           {props.reviews.length > lastPostIndex && (
-            <button onClick={nextPage}>Next</button>
+            <button onClick={nextPage} className="agree-button">Next</button>
           )}
         </div>
       </div>

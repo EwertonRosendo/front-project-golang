@@ -7,31 +7,29 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { LuTextSelect } from "react-icons/lu";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { useCookies } from "react-cookie";
+
 export default function Modal() {
   const [modal, setModal] = useState(false);
-  
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]); // Certifique-se de incluir 'token'
-  const [formFile, setFormFile] = useState({
-    title: "",
-    "form-id": null,
-  });
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
   const handleFileChange = (event) => {
-    setFormFile({
+    setFormData({
       "form-id": event.target.files[0],
     });
   };
 
   const [formData, setFormData] = useState({
-    title: "",
-    author: "",
-    publisher: "",
-    published_at: "",
-    url_image: "no_url",
-    description: "",
+    title: undefined,
+    author: undefined,
+    subtitle: undefined,
+    publisher: undefined,
+    published_at: undefined,
+    description: undefined,
+    "form-id": null,
   });
 
   const handleInputChange = (event) => {
+    console.log(event.target.value)
     const { id, value } = event.target;
     setFormData({
       ...formData,
@@ -42,30 +40,23 @@ export default function Modal() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    console.log(formData)
+
     handleAddBook();
   };
 
   const handleAddBook = () => {
     console.log(modal);
     axios
-      .post("http://localhost:5000/books/add", formData, {
+      .post("http://localhost:5000/books", formData, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${cookies.token.token || null}`,
         },
       })
       .then((response) => {
         if (response.status === 201) {
           toggleModal();
-          axios.post(
-            `http://localhost:5000/files/${response.data.id}`,
-            formFile,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": `Bearer ${cookies.token.token}`
-              },
-            },
-          );
         }
       })
       .catch((e) => console.log(e));
@@ -84,9 +75,18 @@ export default function Modal() {
 
   return (
     <>
-      <button onClick={toggleModal} className="btn-modal">
-        Create a new book
-      </button>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop:"20px"
+        }}
+      >
+        <button onClick={toggleModal} className="agree-button" style={{width:"250px", fontSize:"18px"}}>
+          Create a new book
+        </button>
+      </div>
 
       {modal && (
         <div className="modal modal-create-book">
@@ -131,6 +131,7 @@ export default function Modal() {
                       </p>
                       <input
                         id="author"
+                        className="authors"
                         type="text"
                         value={formData.author}
                         onChange={handleInputChange}
@@ -144,6 +145,7 @@ export default function Modal() {
                       </p>
                       <input
                         id="subtitle"
+                        className="subtitle"
                         type="text"
                         value={formData.subtitle}
                         onChange={handleInputChange}
@@ -157,6 +159,7 @@ export default function Modal() {
                       </p>
                       <input
                         id="publisher"
+                        className="publisher"
                         type="text"
                         value={formData.publisher}
                         onChange={handleInputChange}
@@ -171,6 +174,7 @@ export default function Modal() {
                       <input
                         id="published_at"
                         type="date"
+                        className="published_at"
                         value={formData.published_at}
                         onChange={handleInputChange}
                         placeholder={"Published at.."}
@@ -213,7 +217,7 @@ export default function Modal() {
                     ></textarea>
                   </div>
                 </div>
-                <div className="add-cancel-button">
+                <div className="add-cancel-button" style={{display:"flex",  flexDirection:"row"}}>
                   <button className="cancel-button" onClick={toggleModal}>
                     Cancel
                   </button>
